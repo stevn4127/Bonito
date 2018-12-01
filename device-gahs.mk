@@ -64,3 +64,7 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 # LMK
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.lmk.use_psi=true
+
+# EUICC
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.telephony.euicc.xml:system/etc/permissions/android.hardware.telephony.euicc.xml
