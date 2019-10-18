@@ -901,3 +901,11 @@ include hardware/google/pixel/thermal/device.mk
 
 # Pixel Logger
 include hardware/google/pixel/PixelLogger/PixelLogger.mk
+
+# Missing vendor packages
+PRODUCT_PACKAGES += \
+    libdisplayconfig \
+    libjson \
+    libtinyxml \
+    libwifi-hal:64 \
+    libwifi-hal-qcom
