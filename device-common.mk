@@ -27,12 +27,6 @@ $(call inherit-product-if-exists, vendor/gapps/gapps.mk)
 PRODUCT_COPY_FILES += \
     device/google/bonito/privapp-permissions-bonito.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-bonito.xml
 
-# Maintainer Prop
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.havoc.maintainer=stebomurkn420
-
-HAVOC_BUILD_TYPE := Official
-
 include device/google/bonito/device-audio-mfg.mk
 include device/google/bonito/device.mk
 
