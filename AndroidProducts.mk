@@ -15,12 +15,12 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/aosp_bonito.mk \
-    $(LOCAL_DIR)/aosp_sargo.mk
+    $(LOCAL_DIR)/full_bonito.mk \
+    $(LOCAL_DIR)/full_sargo.mk
 
 PRODUCT_MAKEFILES += \
-    $(LOCAL_DIR)/bliss_bonito.mk \
-    $(LOCAL_DIR)/bliss_sargo.mk
+    $(LOCAL_DIR)/aosp_bonito.mk \
+    $(LOCAL_DIR)/aosp_sargo.mk
 
 COMMON_LUNCH_CHOICES := \
     aosp_bonito-userdebug \
