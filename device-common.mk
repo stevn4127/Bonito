@@ -27,6 +27,13 @@ $(call inherit-product-if-exists, vendor/gapps/gapps.mk)
 PRODUCT_COPY_FILES += \
     device/google/bonito/privapp-permissions-bonito.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-bonito.xml
 
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.control_privapp_permissions=log \
+    ro.adb.secure=0 \
+    persist.sys.usb.config=mtp,adb \
+    persist.service.debuggable=1 \
+    persist.service.adb.enable=1
+
 include device/google/bonito/device-audio-mfg.mk
 include device/google/bonito/device.mk
 
