@@ -19,8 +19,8 @@ PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/aosp_sargo.mk
 
 PRODUCT_MAKEFILES += \
-    $(LOCAL_DIR)/liquid_bonito.mk \
-    $(LOCAL_DIR)/liquid_sargo.mk
+    $(LOCAL_DIR)/superior_bonito.mk \
+    $(LOCAL_DIR)/superior_sargo.mk
 
 COMMON_LUNCH_CHOICES := \
     aosp_bonito-userdebug \
