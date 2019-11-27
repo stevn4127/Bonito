@@ -33,6 +33,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 HAVOC_BUILD_TYPE := Official
 
+# Permission HACKERY
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.control_privapp_permissions=log \
+    ro.adb.secure=0 \
+    persist.sys.usb.config=mtp,adb \
+    persist.service.debuggable=1 \
+    persist.service.adb.enable=1
+
 include device/google/bonito/device-audio-mfg.mk
 include device/google/bonito/device.mk
 
