@@ -33,6 +33,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 HAVOC_BUILD_TYPE := Official
 
+# Include Havoc boot animation
+PRODUCT_COPY_FILES += \
+    vendor/havoc/bootanimation/1080.zip:system/media/bootanimation.zip
+
 # Permission HACKERY
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.control_privapp_permissions=log \
