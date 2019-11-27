@@ -29,13 +29,7 @@ PRODUCT_COPY_FILES += \
 
 # Maintainer Prop
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.havoc.maintainer=stebomurkn420
-
-HAVOC_BUILD_TYPE := Official
-
-# Include Havoc boot animation
-PRODUCT_COPY_FILES += \
-    vendor/havoc/bootanimation/1080.zip:system/media/bootanimation.zip
+    ro.lineage.maintainer=stebomurkn420
 
 # Permission HACKERY
 PRODUCT_PRODUCT_PROPERTIES += \
