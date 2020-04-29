@@ -68,3 +68,5 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # EUICC
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.euicc.xml:system/etc/permissions/android.hardware.telephony.euicc.xml
+    
+WITH_GMS_FI := true
