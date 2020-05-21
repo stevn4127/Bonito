@@ -125,6 +125,7 @@ type adsprpcd_file, file_type, vendor_file_type;
 
 # msm_irqbalance
 type proc_irq, fs_type, proc_type;
+
 type sysfs_irq, fs_type, sysfs_type;
 type irqbalance_socket, file_type;
 

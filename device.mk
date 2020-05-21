@@ -340,7 +340,8 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     hwcomposer.$(TARGET_CHIPSET) \
-    android.hardware.graphics.composer@2.2-service \
+    android.hardware.graphics.composer@2.1-service \
+    android.hardware.graphics.composer@2.1-impl \
     gralloc.$(TARGET_CHIPSET) \
     android.hardware.graphics.mapper@2.0-impl-qti-display \
     vendor.qti.hardware.display.allocator@1.0-service

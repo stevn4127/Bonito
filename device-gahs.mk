@@ -15,9 +15,7 @@
 #
 
 # Include Google apps by default
-ifneq ($(TARGET_BUILD_GAPPS),false)
-$(call inherit-product-if-exists, vendor/gapps/gapps.mk)
-endif
+ $(call inherit-product-if-exists, vendor/gapps/gapps.mk)
 
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += device/google/bonito/overlay/packages/apps/Bluetooth
 

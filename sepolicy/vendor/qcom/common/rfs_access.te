@@ -27,3 +27,6 @@ allow rfs_access wifidump_vendor_data_file:file create_file_perms;
 ')
 
 dontaudit rfs_access kernel:system module_request;
+
+allow rfs_access mpss_rfs_data_file:dir create_dir_perms;
+allow rfs_access mpss_rfs_data_file:file create_file_perms;
