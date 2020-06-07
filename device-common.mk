@@ -127,9 +127,6 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.protected_contents=true
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.thermal_warmreset = true \
 
-export BLISS_BUILDTYPE=OFFICIAL
-export BLISS_DEVELOPER=stebomurkn420
-
 # VoLTE
 PRODUCT_PRODUCT_PROPERTIES += \
     persist.dbg.ims_volte_enable=1 \
