@@ -127,6 +127,11 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.protected_contents=true
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.thermal_warmreset = true \
 
+export BLISS_BUILDTYPE=OFFICIAL
+
+# Bootanimation
+TARGET_BOOT_ANIMATION_RES := 1440
+
 # Google Device
 PRODUCT_PACKAGES += \
     SystemUIGoogle

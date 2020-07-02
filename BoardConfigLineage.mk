@@ -13,8 +13,9 @@ TARGET_KERNEL_ADDITIONAL_FLAGS := \
     MKDTIMG=$(shell pwd)/prebuilts/misc/$(HOST_OS)-x86/libufdt/mkdtimg
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_CLANG_COMPILE := true
-TARGET_KERNEL_CONFIG := lineageos_bonito_defconfig
-TARGET_KERNEL_SOURCE := kernel/google/msm-4.9
+TARGET_KERNEL_CONFIG := dank_defconfig
+TARGET_KERNEL_SOURCE := kernel/google/b4s4
+DISABLE_ARTIFACT_PATH_REQUIREMENTS := true
 
 DEVICE_MANIFEST_FILE += device/google/bonito/lineage_manifest.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += device/google/bonito/lineage_compatibility_matrix.xml
