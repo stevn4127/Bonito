@@ -132,7 +132,6 @@ PRODUCT_PACKAGES += \
     SystemUIGoogle
 
 export BLISS_BUILDTYPE=OFFICIAL
-export BLISS_DEVELOPER=stebomurkn420
 
 # VoLTE
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -144,6 +143,14 @@ PRODUCT_PRODUCT_PROPERTIES += \
     persist.radio.data_ltd_sys_ind=1 \
     persist.radio.data_con_rprt=1 \
     persist.radio.calls.on.ims=1
+
+# Permissions
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.control_privapp_permissions=log \
+    ro.adb.secure=0 \
+    persist.sys.usb.config=mtp,adb \
+    persist.service.debuggable=1 \
+    persist.service.adb.enable=1
     
 # EUICC
 PRODUCT_COPY_FILES += \
