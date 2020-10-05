@@ -894,10 +894,37 @@ include hardware/google/pixel/thermal/device.mk
 # Pixel Logger
 include hardware/google/pixel/PixelLogger/PixelLogger.mk
 
+# Build necessary packages for system
+PRODUCT_PACKAGES += \
+    libmediaplayerservice \
+    libstagefright_httplive:64
+
 # Missing vendor packages
 PRODUCT_PACKAGES += \
+    chre \
+    ese_spi_nxp:64 \
+    hardware.google.light@1.0.vendor \
+    libavservices_minijail_vendor:32 \
+    libcodec2_hidl@1.0.vendor:32 \
+    libcodec2_vndk.vendor \
+    libcppbor.vendor:64 \
     libdisplayconfig \
     libjson \
+    libkeymaster_messages.vendor:64 \
+    libkeymaster_portable.vendor:64 \
+    libnetfilter_conntrack:64 \
+    libnfnetlink:64 \
+    libnos:64 \
+    libnos_client_citadel:64 \
+    libnos_datagram:64 \
+    libnos_datagram_citadel:64 \
+    libnosprotos:64 \
+    libnos_transport:64 \
+    libpuresoftkeymasterdevice.vendor:64 \
+    libsensorndkbridge:64 \
+    libsoft_attestation_cert.vendor:64 \
+    libteeui_hal_support.vendor:64 \
+    libtinycompress \
     libtinyxml \
     libwifi-hal:64 \
     libwifi-hal-qcom
