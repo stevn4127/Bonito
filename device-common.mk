@@ -119,6 +119,11 @@ AB_OTA_POSTINSTALL_CONFIG += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.use_color_management=true
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.protected_contents=true
 
+# Bootanimation
+TARGET_BOOT_ANIMATION_RES := 1080
+
+#BLISS_BUILD_VARIANT=official
+
 # Set thermal warm reset
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.thermal_warmreset = true \
