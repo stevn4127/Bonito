@@ -55,6 +55,15 @@ TARGET_KERNEL_SOURCE := kernel/google/bluecross
 TARGET_KERNEL_CONFIG := bonito_defconfig
 BOARD_KERNEL_IMAGE_NAME := Image.lz4-dtb
 
+# Hack for sdm845 display on R+ which started erroring.
+BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
+
+# Hack for Jelly on /product/
+DISABLE_ARTIFACT_PATH_REQUIREMENTS := true
+
+# Hack for our vendor repo for now
+BUILD_BROKEN_VINTF_PRODUCT_COPY_FILES := true
+
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
 ifeq ($(filter-out bonito_kasan sargo_kasan, $(TARGET_PRODUCT)),)
