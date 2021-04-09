@@ -64,6 +64,7 @@
     <integer-array name="config_availableColorModes">
         <item>0</item> <!-- COLOR_MODE_NATURAL -->
         <item>1</item> <!-- COLOR_MODE_BOOSTED -->
+        <item>2</item> <!-- COLOR_MODE_SATURATED -->
         <item>3</item> <!-- COLOR_MODE_AUTOMATIC -->
     </integer-array>
 
@@ -226,11 +227,6 @@
     <!-- Flag specifying whether VoLTE is availasble on device -->
     <bool name="config_device_volte_available">true</bool>
 
-    <!-- Flag specifying whether VoLTE should be available for carrier: independent of
-        carrier provisioning. If false: hard disabled. If true: then depends on carrier
-        provisioning, availability etc -->
-   <bool name="config_carrier_volte_available">true</bool>
-
     <!-- Flag specifying whether VoLTE is available on device -->
     <bool name="config_device_vt_available">true</bool>
 
@@ -239,11 +235,6 @@
 
     <!-- Flag specifying whether WFC over IMS is availasble on device -->
     <bool name="config_device_wfc_ims_available">true</bool>
-
-    <!-- Flag specifying whether WFC over IMS should be available for carrier: independent of
-        carrier provisioning. If false: hard disabled. If true: then depends on carrier
-        provisioning, availability etc -->
-   <bool name="config_carrier_wfc_ims_available">true</bool>
 
     <!-- Configure mobile tcp buffer sizes in the form:
          rat-name:rmem_min,rmem_def,rmem_max,wmem_min,wmem_def,wmem_max
@@ -293,13 +284,10 @@
         <item>"/apex/com.android.art/javalib/core-oj.jar"</item>
         <item>"/apex/com.android.art/javalib/core-libart.jar"</item>
         <item>"/apex/com.android.media/javalib/updatable-media.jar"</item>
-        <item>"/system_ext/priv-app/SystemUIGoogle/SystemUIGoogle.apk"</item>
-        <item>"/system_ext/priv-app/SystemUIGoogle/oat/arm64/SystemUIGoogle.odex"</item>
+        <item>"/system_ext/priv-app/SystemUI/SystemUI.apk"</item>
+        <item>"/system_ext/priv-app/SystemUI/oat/arm64/SystemUI.odex"</item>
         <item>"/system/lib64/libsurfaceflinger.so"</item>
     </string-array>
-
-    <!-- Should the pinner service pin the Camera application? -->
-    <bool name="config_pinnerCameraApp">true</bool>
 
     <!-- Should the pinner service pin the Home application? -->
     <bool name="config_pinnerHomeApp">true</bool>
@@ -363,13 +351,4 @@
 
     <!-- True if the firmware supports p2p MAC randomization -->
     <bool name="config_wifi_p2p_mac_randomization_supported">true</bool>
-
-    <!-- List of biometric sensors on the device, in decreasing strength. Consumed by AuthService
-         when registering authenticators with BiometricService. Format must be ID:Modality:Strength,
-         where: IDs are unique per device, Modality as defined in BiometricAuthenticator.java,
-         and Strength as defined in Authenticators.java -->
-    <string-array name="config_biometric_sensors" translatable="false" >
-        <!-- ID0:Fingerprint:Strong -->
-        <item>0:2:15</item>
-    </string-array>
 </resources>

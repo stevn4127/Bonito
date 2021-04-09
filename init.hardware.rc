@@ -145,6 +145,17 @@ on init && property:vendor.skip.init=0
     # Battery Defender
     chown system system /sys/devices/platform/soc/soc:google,charger/charge_stop_level
     chown system system /sys/devices/platform/soc/soc:google,charger/charge_start_level
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_drainto_soc
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_recharge_soc
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_recharge_voltage
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_resume_abs_temp
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_resume_soc
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_resume_temp
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_resume_time
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_trigger_temp
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_trigger_time
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_trigger_voltage
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_temp_enable
 
 on late-init
     chown system system /sys/devices/virtual/thermal/tz-by-name/mb-therm-monitor/trip_point_0_temp
@@ -843,17 +854,16 @@ service vendor.theme_clear /vendor/bin/misc_writer --clear-dark-theme
     disabled
     oneshot
 
-# Set dark boot flag on dark mode (UiModeManager.MODE_NIGHT_YES == 2).
-on property:persist.sys.theme=2
+# Set the dark splash on init
+on init
     start vendor.theme_set
 
-# Clear the dark boot flag on light mode (UiModeManager.MODE_NIGHT_NO == 1) or auto mode
-# (UiModeManager.MODE_NIGHT_AUTO == 0).
-on property:persist.sys.theme=1
-    start vendor.theme_clear
+# Set dark boot flag on dark mode (UiModeManager.MODE_NIGHT_YES == 2).
+#on property:persist.sys.theme=1
+#    start vendor.theme_clear
 
-on property:persist.sys.theme=0
-    start vendor.theme_clear
+#on property:persist.sys.theme=0
+#    start vendor.theme_clear
 
 on init && property:ro.boot.slot_successful=no
     write /sys/module/msm_poweroff/parameters/warm_reset 1

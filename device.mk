@@ -48,18 +48,17 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.verified_boot.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.software.verified_boot.xml
 
 # Enforce privapp-permissions whitelist
-#PRODUCT_PROPERTY_OVERRIDES += \
-#    ro.control_privapp_permissions=enforce
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.control_privapp_permissions=enforce
 
 # Enable on-access verification of priv apps. This requires fs-verity support in kernel.
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.apk_verity.mode=1
 
 PRODUCT_PACKAGES += \
-    messaging \
-    netutils-wrapper-1.0
+    messaging
 
-ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+ifneq (,$(filter eng, $(TARGET_BUILD_VARIANT)))
 PRODUCT_PACKAGES += chre_test_client
 endif
 
@@ -104,7 +103,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init.edge_sense.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.edge_sense.sh
 
-ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+ifneq (,$(filter eng, $(TARGET_BUILD_VARIANT)))
   PRODUCT_COPY_FILES += \
       $(LOCAL_PATH)/init.hardware.diag.rc.userdebug:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.$(PRODUCT_PLATFORM).diag.rc
   PRODUCT_COPY_FILES += \
@@ -309,6 +308,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.custom_ecc=1 \
     persist.vendor.radio.data_ltd_sys_ind=1 \
     persist.radio.videopause.mode=1 \
+    persist.vendor.radio.mt_sms_ack=30 \
     persist.vendor.radio.multisim_switch_support=true \
     persist.vendor.radio.sib16_support=1 \
     persist.vendor.radio.data_con_rprt=true \
@@ -319,9 +319,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.rcs.supported=1 \
     vendor.rild.libpath=/vendor/lib64/libril-qc-hal-qmi.so \
     ro.hardware.keystore_desede=true \
-    ro.zram.mark_idle_delay_mins=60 \
-    ro.zram.first_wb_delay_mins=180 \
-    ro.zram.periodic_wb_delay_hours=24 \
 
 # Enable reboot free DSDS
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -329,10 +326,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     telephony.active_modems.max_count=2
-
-# Native video calling
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.dbg.vt_avail_ovr=1
 
 # Disable snapshot timer
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -533,7 +526,7 @@ WPA += wpa_supplicant_wcn.conf
 WPA += wpa_supplicant
 PRODUCT_PACKAGES += $(WPA)
 
-ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+ifneq (,$(filter eng, $(TARGET_BUILD_VARIANT)))
 PRODUCT_PACKAGES += wpa_cli
 endif
 
@@ -570,7 +563,7 @@ PRODUCT_PACKAGES += \
     android.hardware.bluetooth.audio@2.0-impl \
     android.hardware.audio@2.0-service
 
-ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+ifneq (,$(filter eng, $(TARGET_BUILD_VARIANT)))
 PRODUCT_PACKAGES += \
     tinyplay \
     tinycap \
@@ -632,25 +625,25 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/seccomp_policy/mediacodec.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy
 
-ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+ifneq (,$(filter eng, $(TARGET_BUILD_VARIANT)))
 # Subsystem ramdump
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.sys.ssr.enable_ramdumps=0
+    persist.vendor.sys.ssr.enable_ramdumps=1
 endif
 
 # Subsystem silent restart
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.sys.ssr.restart_level=modem,slpi,adsp
 
-ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+ifneq (,$(filter eng, $(TARGET_BUILD_VARIANT)))
 # Sensor debug flag
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.debug.ash.logger=0 \
     persist.vendor.debug.ash.logger.time=0
 endif
 
-# Setup Dalvik VM configurations
-$(call inherit-product, vendor/extras/configs/phone-xhdpi-4096-dalvik-heap.mk)
+# setup dalvik vm configs
+$(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
 
 PRODUCT_COPY_FILES += \
     device/google/bonito/fstab.hardware:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.$(PRODUCT_PLATFORM) \
@@ -660,7 +653,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     charger_res_images
 
-ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+ifneq (,$(filter eng, $(TARGET_BUILD_VARIANT)))
 # b/36703476: Set default log size to 1M
 PRODUCT_PROPERTY_OVERRIDES += \
   ro.logd.size=1M
@@ -775,7 +768,7 @@ PRODUCT_COPY_FILES += \
      device/google/bonito/acdbdata/adsp_avs_config.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/adsp_avs_config.acdb
 
 # Audio ACDB workspace files for QACT
-ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+ifneq (,$(filter eng, $(TARGET_BUILD_VARIANT)))
 PRODUCT_COPY_FILES += \
      device/google/bonito/acdbdata/OEM/sdm670-intcodec-b4-snd-card/workspaceFile.qwsp:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm670-intcodec-b4-snd-card/workspaceFile.qwsp \
      device/google/bonito/acdbdata/OEM/sdm670-intcodec-s4-snd-card/workspaceFile.qwsp:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm670-intcodec-s4-snd-card/workspaceFile.qwsp \
@@ -808,7 +801,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.radio.log_prefix="modem_log_"
 
 # Enable modem logging for debug
-ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+ifneq (,$(filter eng, $(TARGET_BUILD_VARIANT)))
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.sys.modem.diag.mdlog=true
 else
@@ -818,8 +811,8 @@ endif
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.sys.modem.diag.mdlog_br_num=5
 
-# Enable tcpdump_logger on userdebug and eng
-ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+# Enable tcpdump_logger on eng
+ifneq (,$(filter eng, $(TARGET_BUILD_VARIANT)))
     PRODUCT_PROPERTY_OVERRIDES += \
         persist.vendor.tcpdump.log.alwayson=false \
         persist.vendor.tcpdump.log.br_num=5
@@ -835,7 +828,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.lmk.log_stats=true
 
 # default usb oem functions
-ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+ifneq (,$(filter eng, $(TARGET_BUILD_VARIANT)))
   PRODUCT_PROPERTY_OVERRIDES += \
       persist.vendor.usb.usbradio.config=diag
 endif
@@ -879,10 +872,10 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 # Increment the SVN for any official public releases
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.vendor.build.svn=29
+	ro.vendor.build.svn=36
 
 # Vendor verbose logging default property
-ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+ifneq (,$(filter eng, $(TARGET_BUILD_VARIANT)))
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.verbose_logging_enabled=true
 else
@@ -897,59 +890,3 @@ include hardware/google/pixel/thermal/device.mk
 
 # power HAL
 -include hardware/google/pixel/power-libperfmgr/aidl/device.mk
-
-# Build necessary packages for system
-PRODUCT_PACKAGES += \
-    libmediaplayerservice \
-    libstagefright_httplive:64
-
-# Missing vendor packages
-PRODUCT_PACKAGES += \
-    chre \
-    ese_spi_nxp:64 \
-    hardware.google.light@1.0.vendor \
-    libavservices_minijail_vendor:32 \
-    libcodec2_hidl@1.0.vendor:32 \
-    libcodec2_vndk.vendor \
-    libcppbor.vendor:64 \
-    libdisplayconfig \
-    libdrm.vendor \
-    libhidltransport.vendor \
-    libhwbinder.vendor \
-    libjson \
-    libkeymaster_messages.vendor:64 \
-    libkeymaster_portable.vendor:64 \
-    libnetfilter_conntrack:64 \
-    libnfnetlink:64 \
-    libnos:64 \
-    libnos_client_citadel:64 \
-    libnos_datagram:64 \
-    libnos_datagram_citadel:64 \
-    libnosprotos:64 \
-    libnos_transport:64 \
-    libpuresoftkeymasterdevice.vendor:64 \
-    libsensorndkbridge:64 \
-    libsoft_attestation_cert.vendor:64 \
-    libteeui_hal_support.vendor:64 \
-    libtinycompress \
-    libtinyxml \
-    libwifi-hal:64 \
-    libwifi-hal-qcom \
-    nos_app_avb:64 \
-    nos_app_identity:64 \
-    nos_app_keymaster:64 \
-    nos_app_weaver:64 \
-    vendor.display.config@1.0.vendor \
-    vendor.display.config@1.1.vendor \
-    vendor.display.config@1.2.vendor \
-    vendor.display.config@1.3.vendor
-
-# EUICC
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.telephony.euicc.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.hardware.telephony.euicc.xml
-
-# RCS
-PRODUCT_PACKAGES += \
-    com.android.ims.rcsmanager \
-    PresencePolling \
-    RcsService

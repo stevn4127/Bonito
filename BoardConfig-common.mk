@@ -20,15 +20,6 @@ TARGET_BOARD_PLATFORM := sdm710
 TARGET_BOARD_INFO_FILE := device/google/bonito/board-info.txt
 USES_DEVICE_GOOGLE_B4S4 := true
 
-# Hack for sdm845 display on R+ which started erroring.
-BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
-
-# Hack for Jelly on /product/
-DISABLE_ARTIFACT_PATH_REQUIREMENTS := true
-
-# Hack for our vendor repo for now
-BUILD_BROKEN_VINTF_PRODUCT_COPY_FILES := true
-
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
@@ -57,11 +48,6 @@ BOARD_KERNEL_CMDLINE += cgroup.memory=nokmem
 BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1
 BOARD_KERNEL_CMDLINE += loop.max_part=7
 BOARD_KERNEL_CMDLINE += androidboot.boot_devices=soc/7c4000.sdhci
-#TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
-TARGET_KERNEL_CLANG_COMPILE := true
-TARGET_KERNEL_SOURCE := kernel/google/bluecross
-TARGET_KERNEL_CONFIG := bonito_defconfig
-BOARD_KERNEL_IMAGE_NAME := Image.lz4
 
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
@@ -79,8 +65,6 @@ BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_BOOT_HEADER_VERSION := 2
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 
-# DTBO partition definitions
-TARGET_NEEDS_DTBOIMAGE := true
 BOARD_DTBOIMG_PARTITION_SIZE := 8388608
 
 TARGET_NO_KERNEL := false
@@ -95,8 +79,7 @@ AB_OTA_PARTITIONS += \
     vbmeta \
     dtbo \
     product \
-    system_ext \
-    vendor
+    system_ext
 
 BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
@@ -119,9 +102,6 @@ BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
 # boot.img
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x04000000
 
-# vendor.img
-BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
-
 BOARD_SUPER_PARTITION_GROUPS := google_dynamic_partitions
 BOARD_GOOGLE_DYNAMIC_PARTITIONS_PARTITION_LIST := \
     system \
@@ -143,7 +123,7 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_ROOT_EXTRA_SYMLINKS := /mnt/vendor/persist:/persist
 BOARD_ROOT_EXTRA_SYMLINKS += /vendor/dsp:/dsp
 
-include device/google/bonito-sepolicy/bonito-sepolicy.mk
+include device/google/bonito/sepolicy/bonito-sepolicy.mk
 
 TARGET_FS_CONFIG_GEN := device/google/bonito/config.fs
 
@@ -186,7 +166,7 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 WIFI_HIDL_FEATURE_AWARE := true
-WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
+WIFI_HIDL_FEATURE_DUAL_INTERFACE:= true
 WIFI_FEATURE_WIFI_EXT_HAL := true
 WIFI_FEATURE_IMU_DETECTION := false
 WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
@@ -255,3 +235,5 @@ TARGET_USES_MKE2FS := true
 BOARD_PERFSETUP_SCRIPT := platform_testing/scripts/perf-setup/b4s4-setup.sh
 
 -include vendor/google_devices/bonito/proprietary/BoardConfigVendor.mk
+
+-include device/google/bonito/BoardConfigLineage.mk

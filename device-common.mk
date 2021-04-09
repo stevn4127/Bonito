@@ -24,6 +24,17 @@ PRODUCT_PLATFORM := sdm670
 # Enable updating of APEXes
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.control_privapp_permissions=log \
+    ro.adb.secure=0 \
+    persist.sys.usb.config=mtp,adb \
+    persist.service.debuggable=1 \
+    persist.service.adb.enable=1
+    
+# Bootanimation
+TARGET_BOOT_ANIMATION_RES := 1080
+
+
 include device/google/bonito/device-audio-mfg.mk
 include device/google/bonito/device.mk
 
@@ -118,11 +129,6 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.use_color_management=true
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.protected_contents=true
-
-# Bootanimation
-TARGET_BOOT_ANIMATION_RES := 1080
-
-#BLISS_BUILD_VARIANT=official
 
 # Set thermal warm reset
 PRODUCT_PRODUCT_PROPERTIES += \
